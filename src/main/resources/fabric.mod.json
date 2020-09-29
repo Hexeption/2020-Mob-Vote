@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "template",
+  "id": "votemob",
   "version": "${version}",
-  "name": "Template",
-  "description": "A template for Fabric Mods ",
+  "name": "Vote Mob",
+  "description": "All Mobs that are in the 2020 Mob Vote. ",
   "authors": [
     "Hexeption"
   ],
@@ -16,15 +16,18 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.hexeption.template.Template"
+      "dev.hexeption.votemob.MineconVoteMob"
+    ],
+    "client": [
+      "dev.hexeption.votemob.MineconVoteMobClient"
     ]
   },
   "mixins": [
-    "template.mixins.json"
+    "votemob.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.8.2+build.194",
     "fabric": "*",
-    "minecraft": "1.16.1"
+    "minecraft": "1.16.3"
   }
 }

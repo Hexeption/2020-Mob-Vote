@@ -16,14 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package dev.hexeption.template;
+package dev.hexeption.votemob;
 
-import net.fabricmc.api.ModInitializer;
+import dev.hexeption.votemob.client.model.GlowSquidRenderer;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 
-public class Template implements ModInitializer {
+/**
+ * VoteClient
+ *
+ * @author Hexeption admin@hexeption.co.uk
+ * @since 28/09/2020 - 11:08 pm
+ */
+@Environment(EnvType.CLIENT)
+public class MineconVoteMobClient implements ClientModInitializer {
 
     @Override
-    public void onInitialize() {
-
+    public void onInitializeClient() {
+        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.GLOW_SQUID, (dispatcher, context) -> {
+            return new GlowSquidRenderer(dispatcher);
+        });
     }
 }

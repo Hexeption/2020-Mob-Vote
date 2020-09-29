@@ -29,7 +29,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "io.github.prospector:modmenu:${project.mod_menu_version}"
-    modCompile "uk.co.hexeption:DevWorld_1.16:1.16+1.2.0+build.15"
+
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
@@ -101,9 +101,9 @@ curseforge {
     }
     project {
         id = '000000'
-        changelog = 'A changelog can be found at https://github.com/Hexeption/Hex-Fabric-Template'
+        changelog = 'A changelog can be found at https://github.com/Hexeption/2020-Mob-Vote'
         releaseType = 'beta'
-        addGameVersion '1.15'
+        addGameVersion '1.16'
         mainArtifact(remapJar) {
             displayName = "Template v$version for $project.minecraft_version"
         }
