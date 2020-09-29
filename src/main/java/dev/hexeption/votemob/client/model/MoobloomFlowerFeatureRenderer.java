@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Template for Fabric Mods
+ * Mob Vote
  * Copyright (C) 2020  Hexeption (Keir Davis)
  *
  * This program is free software: you can redistribute it and/or modify
