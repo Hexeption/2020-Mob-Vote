@@ -19,6 +19,7 @@
 package dev.hexeption.votemob;
 
 import dev.hexeption.votemob.client.model.GlowSquidRenderer;
+import dev.hexeption.votemob.client.model.IceologgerRenderer;
 import dev.hexeption.votemob.client.model.MoobloomRenderer;
 import dev.hexeption.votemob.registry.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
@@ -39,12 +40,9 @@ public class MineconVoteMobClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.GLOW_SQUID, (dispatcher, context) -> {
-            return new GlowSquidRenderer(dispatcher);
-        });
-        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.MOOBLOOM, (dispatcher, context) -> {
-            return new MoobloomRenderer(dispatcher);
-        });
+        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.GLOW_SQUID, (dispatcher, context) -> new GlowSquidRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.MOOBLOOM, (dispatcher, context) -> new MoobloomRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.ICEOLOGER, (dispatcher, context) -> new IceologgerRenderer(dispatcher));
         BlockRenderLayerMapImpl.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BUTTERCUP);
     }
 }

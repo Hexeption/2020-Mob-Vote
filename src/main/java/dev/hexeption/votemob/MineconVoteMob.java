@@ -19,6 +19,7 @@
 package dev.hexeption.votemob;
 
 import dev.hexeption.votemob.entity.GlowSquidEntity;
+import dev.hexeption.votemob.entity.IceologerEntity;
 import dev.hexeption.votemob.entity.MoobloomEntity;
 import dev.hexeption.votemob.registry.ModBlocks;
 import dev.hexeption.votemob.registry.ModItems;
@@ -43,6 +44,10 @@ public class MineconVoteMob implements ModInitializer {
         .register(Registry.ENTITY_TYPE, id("moobloom"), FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MoobloomEntity::new).dimensions(
             EntityDimensions.fixed(0.9F, 1.4F)).trackRangeBlocks(10).build());
 
+    public static final EntityType<IceologerEntity> ICEOLOGER = Registry
+        .register(Registry.ENTITY_TYPE, id("iceologer"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, IceologerEntity::new).dimensions(
+            EntityDimensions.fixed(0.6F, 1.95F)).build());
+
     public static Identifier id(String name) {
         return new Identifier(MOD_ID, name);
     }
@@ -53,5 +58,6 @@ public class MineconVoteMob implements ModInitializer {
         ModBlocks.init();
         FabricDefaultAttributeRegistry.register(GLOW_SQUID, GlowSquidEntity.createSquidAttributes());
         FabricDefaultAttributeRegistry.register(MOOBLOOM, MoobloomEntity.createCowAttributes());
+        FabricDefaultAttributeRegistry.register(ICEOLOGER, IceologerEntity.createHostileAttributes());
     }
 }
