@@ -16,31 +16,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package dev.hexeption.votemob.mixin;
+package dev.hexeption.votemob.client.model;
 
 import dev.hexeption.votemob.MineconVoteMob;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.biome.SpawnSettings.Builder;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import dev.hexeption.votemob.entity.MoobloomEntity;
+import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.model.CowEntityModel;
+import net.minecraft.util.Identifier;
 
 /**
- * DefaultBiomeFeaturesMixin
+ * MoobloomRenderer
  *
  * @author Hexeption admin@hexeption.co.uk
- * @since 28/09/2020 - 11:51 pm
+ * @since 29/09/2020 - 04:40 am
  */
-@Mixin(DefaultBiomeFeatures.class)
-public class DefaultBiomeFeaturesMixin {
+public class MoobloomRenderer extends MobEntityRenderer<MoobloomEntity, CowEntityModel<MoobloomEntity>> {
 
-    @Inject(method = "addWarmOceanMobs", at = @At("TAIL"))
-    private static void addWarmOceanMobs(Builder builder, int squidWeight, int squidMinGroupSize, CallbackInfo ci) {
-        if (squidWeight == 5) {
-            builder.spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(MineconVoteMob.GLOW_SQUID, 10, squidMinGroupSize, 4));
-        }
+    private static final Identifier TEXTURE = new Identifier(MineconVoteMob.MOD_ID, "textures/entity/moobloom/texture.png");
+
+
+    public MoobloomRenderer(EntityRenderDispatcher entityRenderDispatcher) {
+        super(entityRenderDispatcher, new CowEntityModel(), 0.7F);
+        this.addFeature(new MoobloomFlowerFeatureRenderer<>(this));
+    }
+
+    @Override
+    public Identifier getTexture(MoobloomEntity entity) {
+        return TEXTURE;
     }
 }

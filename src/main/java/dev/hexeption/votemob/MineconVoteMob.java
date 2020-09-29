@@ -19,7 +19,9 @@
 package dev.hexeption.votemob;
 
 import dev.hexeption.votemob.entity.GlowSquidEntity;
-import dev.hexeption.votemob.item.ModItems;
+import dev.hexeption.votemob.entity.MoobloomEntity;
+import dev.hexeption.votemob.registry.ModBlocks;
+import dev.hexeption.votemob.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -37,13 +39,19 @@ public class MineconVoteMob implements ModInitializer {
         .register(Registry.ENTITY_TYPE, id("glow_squid"), FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, GlowSquidEntity::new).dimensions(
             EntityDimensions.fixed(0.8F, 0.8F)).build());
 
+    public static final EntityType<MoobloomEntity> MOOBLOOM = Registry
+        .register(Registry.ENTITY_TYPE, id("moobloom"), FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MoobloomEntity::new).dimensions(
+            EntityDimensions.fixed(0.9F, 1.4F)).trackRangeBlocks(10).build());
+
     public static Identifier id(String name) {
         return new Identifier(MOD_ID, name);
     }
 
     @Override
     public void onInitialize() {
-        FabricDefaultAttributeRegistry.register(GLOW_SQUID, GlowSquidEntity.createSquidAttributes());
         ModItems.init();
+        ModBlocks.init();
+        FabricDefaultAttributeRegistry.register(GLOW_SQUID, GlowSquidEntity.createSquidAttributes());
+        FabricDefaultAttributeRegistry.register(MOOBLOOM, MoobloomEntity.createCowAttributes());
     }
 }

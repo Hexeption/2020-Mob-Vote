@@ -19,10 +19,14 @@
 package dev.hexeption.votemob;
 
 import dev.hexeption.votemob.client.model.GlowSquidRenderer;
+import dev.hexeption.votemob.client.model.MoobloomRenderer;
+import dev.hexeption.votemob.registry.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
+import net.minecraft.client.render.RenderLayer;
 
 /**
  * VoteClient
@@ -38,5 +42,9 @@ public class MineconVoteMobClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register(MineconVoteMob.GLOW_SQUID, (dispatcher, context) -> {
             return new GlowSquidRenderer(dispatcher);
         });
+        EntityRendererRegistry.INSTANCE.register(MineconVoteMob.MOOBLOOM, (dispatcher, context) -> {
+            return new MoobloomRenderer(dispatcher);
+        });
+        BlockRenderLayerMapImpl.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BUTTERCUP);
     }
 }

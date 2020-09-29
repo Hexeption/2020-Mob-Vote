@@ -20,27 +20,27 @@ package dev.hexeption.votemob.mixin;
 
 import dev.hexeption.votemob.MineconVoteMob;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.world.biome.DefaultBiomeCreator;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.SpawnSettings.Builder;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
- * DefaultBiomeFeaturesMixin
+ * DefaultBiomeCreatorMixin
  *
  * @author Hexeption admin@hexeption.co.uk
- * @since 28/09/2020 - 11:51 pm
+ * @since 29/09/2020 - 06:07 am
  */
-@Mixin(DefaultBiomeFeatures.class)
-public class DefaultBiomeFeaturesMixin {
+@Mixin(DefaultBiomeCreator.class)
+public class DefaultBiomeCreatorMixin {
 
-    @Inject(method = "addWarmOceanMobs", at = @At("TAIL"))
-    private static void addWarmOceanMobs(Builder builder, int squidWeight, int squidMinGroupSize, CallbackInfo ci) {
-        if (squidWeight == 5) {
-            builder.spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(MineconVoteMob.GLOW_SQUID, 10, squidMinGroupSize, 4));
-        }
+    @Redirect(method = "createFlowerForest", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/SpawnSettings$Builder;spawn(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/world/biome/SpawnSettings$SpawnEntry;)Lnet/minecraft/world/biome/SpawnSettings$Builder;"))
+    private static SpawnSettings.Builder createFlowerForest(Builder builder, SpawnGroup spawnGroup, SpawnEntry spawnEntry) {
+        builder.spawn(SpawnGroup.CREATURE, new SpawnEntry(MineconVoteMob.MOOBLOOM, 8, 2, 4));
+        return builder;
     }
+
 }

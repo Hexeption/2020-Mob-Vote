@@ -1,4 +1,7 @@
 {
   "item.votemob.glow_squid_spawn_egg": "Glow Squid Spawn Egg",
-  "entity.votemob.glow_squid": "Glow Squid"
+  "entity.votemob.glow_squid": "Glow Squid",
+  "item.votemob.moobloom_spawn_egg": "Moobloom Spawn Egg",
+  "block.votemob.buttercup": "Buttercup",
+  "entity.votemob.moobloom": "Moobloom"
 }
